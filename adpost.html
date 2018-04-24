@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="media/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
+
+    <title>Rapyd$ell</title>
+</head>
+
+<body id="body" class="cyan-skin smooth-scroll">
+
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark primary-color">
+        <a class="navbar-brand" href="rapydsell.html">
+            <i class="fa fa-home"></i> Rapyd$ell</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4"
+            aria-expanded="true" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse show" id="navbarSupportedContent-4" style="">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active" style="display: none;">
+                    <a name="" id="" class="btn btn-danger btn-sm" href="#" role="button" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-sign-in"></i>&nbsp; Login/Register</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="fa fa-user"></i> Profile </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                        <a class="dropdown-item waves-effect waves-light" href="#" onclick="window.location.replace('index.html')">Log out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Ad form start -->
+    
+    <div class="container">
+        <form action="" method="post">
+                <div class="md-form">
+                    <i class="fa fa-pencil prefix text-warning"></i>
+                    <input type="text" maxlength="100" required id="adTitle" class="form-control">
+                    <label for="adTitle">Title</label>
+                </div>
+                
+                <div class="md-form">
+                    <i class="fa fa-pencil-square-o prefix text-warning"></i>
+                    <textarea name="" id="adDetail" class="form-control" required cols="30" rows="10"></textarea>
+                    <label for="adDetail">Details</label>
+                </div>
+                <div class="md-form">
+                    <i class="fa fa-dollar prefix text-warning"></i>
+                    <input type="number" id="adPrice" required class="form-control">
+                    <label for="adPrice">Price in Rupees (Rs.999)</label>
+                </div>
+                <div class="md-form">
+                    <i class="fa fa-phone prefix text-warning"></i>
+                    <input type="tel" maxlength="11" id="userNumber" required class="form-control">
+                    <label for="userNumber">Phone Number</label>
+                </div>
+                <div class="md-form">
+                    <i class="fa fa-file-photo-o prefix text-warning"></i>
+                    <input type="file" id="adImage" class="form-control" required style="padding: 10px">
+                    <label for="adImage"></label>
+                </div>                
+                <div class="text-center mt-4">
+                    <button class="btn btn-warning waves-effect waves-light" type="submit" onclick="postMyAd()">Submit
+                        <i class="fa fa-paper-plane ml-1"></i>
+                    </button>
+                </div>
+        </form>
+    </div>
+
+    <!-- Ad form start -->
+
+
+
+
+
+
+
+    <!-- Footer start -->
+    <footer class="page-footer font-small blue pt-4 mt-4" id="footer">
+
+        <div class="container-fluid text-center text-md-left">
+            <div class="row">
+
+                <div class="col-md-12 text-center">
+                    <h5 class="text-uppercase">Social Links
+                        <i class="fa fa-arrow-circle-o-down"></i>
+                    </h5>
+                    <p>You can see my work and my profiles.</p>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-3">
+                    <h1>
+                        <a href="https://www.facebook.com/Manal.Liaquat.7" target="_blank">
+                            <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                        </a>
+                    </h1>
+                </div>
+                <div class="col-3">
+                    <h1>
+                        <a href="https://www.linkedin.com/in/manalliaquat/" target="_blank">
+                            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                        </a>
+                    </h1>
+                </div>
+                <div class="col-3">
+                    <h1>
+                        <a href="http://codepen.io/ManalLiaquat/" target="_blank">
+                            <i class="fa fa-codepen"></i>
+                        </a>
+                    </h1>
+                </div>
+                <div class="col-3">
+                    <h1>
+                        <a href="https://www.freecodecamp.org/manalliaquat" target="_blank">
+                            <i class="fa fa-free-code-camp" aria-hidden="true"></i>
+                        </a>
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright py-3 text-center">
+            © 2018 Copyright:
+            <a href="https://github.com/ManalLiaquat/" target="_blank"> Manal Liaquat - GitHub</a>
+        </div>
+
+    </footer>
+    <!-- Footer End-->
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
