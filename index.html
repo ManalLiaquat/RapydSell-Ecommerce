@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="media/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
+
+    <title>Rapyd$ell</title>
+    <style>
+        
+    </style>
+</head>
+
+<body id="body" class="cyan-skin smooth-scroll">
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark scrolling-navbar fixed-top">
+    
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="#">Rapyd$ell</a>
+    
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+    
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                </li>
+            </ul>
+            <!-- Links -->
+    
+            <form class="form-inline">
+                <div class="md-form mt-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                </div>
+            </form>
+        </div>
+        <!-- Collapsible content -->
+    
+    </nav>
+    <!--/.Navbar-->
+
+
+
+    <!-- Registration Modal Start -->
+    <!-- Central Modal Small -->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal" role="document">
+            <div class="modal-content">
+                <!--Content-->
+                <!--Modal cascading tabs-->
+                <div class="modal-c-tabs">
+    
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs tabs-2 black darken-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active text-warning" data-toggle="tab" href="#panel17" role="tab">
+                                <i class="fa fa-user mr-1"></i>
+                                <b> Login</b>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-warning" data-toggle="tab" href="#panel18" role="tab">
+                                <i class="fa fa-user-plus mr-1"></i>
+                                <b> Register</b>
+                            </a>
+                        </li>
+                    </ul>
+    
+                    <!-- Tab panels -->
+                    <div class="tab-content">
+                        <!--Panel 17-->
+                        <div class="tab-pane fade in show active" id="panel17" role="tabpanel">
+    
+                            <!--Body-->
+                            <div class="modal-body mb-1">
+                                <div class="md-form form-sm">
+                                    <i class="fa fa-envelope prefix text-warning"></i>
+                                    <input type="email" id="userEmail" class="form-control form-control-sm">
+                                    <label for="userEmail">Your email</label>
+                                </div>
+    
+                                <div class="md-form form-sm">
+                                    <i class="fa fa-lock prefix text-warning"></i>
+                                    <input type="password" id="userPassword" class="form-control form-control-sm">
+                                    <label for="userPassword">Your password</label>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-warning waves-effect waves-light" onclick="login()">Log in
+                                        <i class="fa fa-sign-in ml-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!--Footer-->
+                            <div class="modal-footer">
+                                <div class="options text-center text-md-right mt-1">
+                                    <p>Not a member?
+                                        <a href="#panel18" class="orange-text">Sign Up</a>
+                                    </p>
+                                    <p>Forgot
+                                        <a href="#" class="orange-text">Password?</a>
+                                    </p>
+                                </div>
+                                <button type="button" class="btn btn-outline-info waves-effect ml-auto btn-sm" data-dismiss="modal">Close</button>
+                            </div>
+    
+                        </div>
+                        <!--/.Panel 7-->
+    
+                        <!--Panel 18-->
+                        <div class="tab-pane fade" id="panel18" role="tabpanel">
+    
+                            <!--Body-->
+                            <div class="modal-body">
+                                <div class="md-form form-sm">
+                                    <i class="fa fa-user prefix text-warning"></i>
+                                    <input type="text" id="name" class="form-control form-control-sm">
+                                    <label for="name">Your name</label>
+                                </div>
+                                <div class="md-form form-sm">
+                                    <i class="fa fa-envelope prefix text-warning"></i>
+                                    <input type="email" id="email" class="form-control form-control-sm">
+                                    <label for="email">Your email</label>
+                                </div>
+    
+                                <div class="md-form form-sm">
+                                    <i class="fa fa-lock prefix text-warning"></i>
+                                    <input type="password" id="password" class="form-control form-control-sm">
+                                    <label for="password">Your password</label>
+                                </div>
+    
+                                <div class="md-form form-sm">
+                                    <i class="fa fa-phone prefix text-warning"></i>
+                                    <input type="tel" id="number" class="form-control form-control-sm">
+                                    <label for="number">Your phone number</label>
+                                </div>
+    
+                                <div class="text-center form-sm mt-4">
+                                    <button class="btn btn-warning waves-effect waves-light" onclick="register()">Sign up
+                                        <i class="fa fa-sign-in ml-1"></i>
+                                    </button>
+                                </div>
+    
+                            </div>
+                            <!--Footer-->
+                            <div class="modal-footer">
+                                <div class="options text-right">
+                                    <p class="pt-1">Already have an account?
+                                        <a href="#panel17" class="orange-text">Log In</a>
+                                    </p>
+                                </div>
+                                <button type="button" class="btn btn-outline-info waves-effect ml-auto btn-sm" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                        <!--/.Panel 8-->
+                    </div>
+    
+                </div>
+    
+                <!--/.Content-->
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Registration Modal End -->
+
+
+
+
+
+    <!--Carousel Wrapper-->
+    <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
+    
+        <!--Slides-->
+        <div class="carousel-inner" role="listbox">
+            <!--First slide-->
+            <div class="carousel-item active">
+                <!--Mask-->
+                <div class="view">
+                    <!--Video source-->
+                    <video autoplay loop playsinline>
+                        <source src="media/animation-intro.mp4" type="video/mp4" />
+                    </video>
+                    <!-- Carousel content -->
+                    <div class="full-bg-img flex-center mask rgba-indigo-light white-text">
+                        <ul class="animated fadeInUp col-md-12 list-unstyled list-inline">
+                            <li>
+                                <h1 class="font-weight-bold text-uppercase">Welcome to Rapyd$ell</h1>
+                            </li>
+                            <li>
+                                <p class="font-weight-bold text-uppercase py-4">The most powerful and free app to instantly sell your goods</p>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn btn-unique btn-lg btn-rounded mr-0" href="#" role="button" data-toggle="modal" data-target="#exampleModal">
+                                    <i class="fa fa-sign-in"></i>&nbsp; Login/Register</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--/Mask-->
+            </div>
+            <!--/First slide-->
+        </div>
+        <!--/.Slides-->
+    </div>
+    <!--/.Carousel Wrapper-->
+
+
+
+
+
+
+    <!--Footer-->
+    <footer class="page-footer text-center text-md-left pt-4">
+        <!--Footer Links-->
+        <div class="container-fluid">
+            <div class="row">
+                <!--First column-->
+                <div class="col-md-3 offset-md-1">
+                    <h5 class="font-weight-bold text-uppercase mb-4">About RapySell</h5>
+                    <p>RapySell is a platform where you can buy &amp; sell goods with ease.</p>
+                    <p>This website is created by Manal Liaquat.</p>
+                </div>
+                <!--/.First column-->
+                <hr class="clearfix w-100 d-md-none">
+                <!--Second column-->
+                <div class="col-md-2 offset-md-1">
+                    <h5 class="font-weight-bold text-uppercase mb-4"><i class="fa fa-github" aria-hidden="true"></i> - Github</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="https://github.com/ManalLiaquat/" target="_blank">github.com/ManalLiaquat/</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.Second column-->
+                <hr class="clearfix w-100 d-md-none">
+                <!--Third column-->
+                <div class="col-md-2">
+                    <h5 class="font-weight-bold text-uppercase mb-4"><i class="fa fa-linkedin-square" aria-hidden="true"></i> - LinkedIn</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="https://www.linkedin.com/in/manalliaquat/" target="_blank">www.linkedin.com/in/manalliaquat/</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.Third column-->
+                <hr class="clearfix w-100 d-md-none">
+                <!--Fourth column-->
+                <div class="col-md-2">
+                    <h5 class="font-weight-bold text-uppercase mb-4"><i class="fa fa-codepen"></i> - CodePen</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="http://codepen.io/ManalLiaquat/" target="_blank">codepen.io/ManalLiaquat/</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.Fourth column-->
+            </div>
+        </div>
+        <!--/.Footer Links-->
+        <!--Copyright-->
+        <div class="footer-copyright text-center">
+            <div class="container-fluid py-3">
+                © 2018 Copyright:
+                <a href="https://www.facebook.com/Manal.Liaquat.7" target="_blank"> Manal Liaquat - Facebook </a>
+            </div>
+        </div>
+        <!--/.Copyright-->
+    </footer>
+    <!--/.Footer-->
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
