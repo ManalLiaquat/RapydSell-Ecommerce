@@ -14,7 +14,7 @@
     <title>Rapyd$ell</title>
 </head>
 
-<body id="body" onload="getAdItems();" class="cyan-skin smooth-scroll">
+<body id="body" class="cyan-skin smooth-scroll">
 
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark primary-color">
         <a class="navbar-brand" href="rapydsell.html">
@@ -30,7 +30,7 @@
                         aria-expanded="false">
                         <i class="fa fa-user"></i> Profile </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-                        <a class="dropdown-item waves-effect waves-light" onclick="window.location.replace('index.html')">Log out</a>
+                        <a class="dropdown-item waves-effect waves-light" onclick="logOut();">Log out</a>
                     </div>
                 </li>
                 <li class="nav-item active">
@@ -106,20 +106,16 @@
 
 
 
-
     <!-- Ads/post start -->
     <div class="container" id="adContainer">
         <h1>Ads</h1>
         <!-- Card deck -->
-        
+
         <!-- Card deck -->
     </div>
     <!-- Ads/post End -->
 
-
-
     
-
 
     <!-- Footer start -->
     <footer class="page-footer font-small blue pt-4 mt-4" id="footer">
@@ -175,10 +171,12 @@
     <!-- Footer End-->
 
 
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
     <script src="js/app.js"></script>
 </body>
 
