@@ -25,7 +25,7 @@
         </button>
         <div class="navbar-collapse collapse show" id="navbarSupportedContent-4">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown" id="">
+                <li class="nav-item dropdown" id="profileBtn">
                     <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         <i class="fa fa-user"></i> Profile </a>
@@ -33,8 +33,11 @@
                         <a class="dropdown-item waves-effect waves-light" onclick="logOut();">Log out</a>
                     </div>
                 </li>
+                <li>
+                    <a href="index.html" class="btn btn-danger btn-sm pull-right" style="display: none;" id="signinBtn"><i class="fa fa-sign-in"></i> Sign In</a>
+                </li>
                 <li class="nav-item active">
-                    <a name="" id="" class="btn btn-warning btn-sm pull-right" onclick="window.location='adpost.html'" href="#" role="button">Submit an Ad &nbsp;
+                    <a name="" id="postBtn" class="btn btn-warning btn-sm pull-right" onclick="window.location='adpost.html'" href="#" role="button">Submit an Ad &nbsp;
                         <i class="fa fa-plus-circle"></i>
                     </a>
                 </li>
@@ -61,9 +64,24 @@
     </div>
     <!-- Search bar End -->
 
+
+
+
+
+    <!-- Ads/post start -->
+    <div class="container" id="adContainer">
+        <h1>Posts</h1>
+        <!-- Card deck -->
+
+        <!-- Card deck -->
+    </div>
+    <!-- Ads/post End -->
+
+    <br>
+
     <!-- Slide start -->
-    <div class="container">
-        <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="container-fluid">
+        <div id="carousel-example-2" class="carousel slide carousel-fade adSlider" data-ride="carousel">
             <!--Indicators-->
             <ol class="carousel-indicators">
                 <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
@@ -73,7 +91,7 @@
                 <div class="carousel-item active">
                     <div class="view">
                         <img class="d-block w-100" src="media/slider1.jpg" alt="First slide">
-                        <div class="mask rgba-black-slight"></div>
+                        <div class="mask rgba-black-light"></div>
                     </div>
                     <div class="carousel-caption">
                         <h3 class="h3-responsive">Advertise your business on our website</h3>
@@ -83,7 +101,7 @@
                 <div class="carousel-item">
                     <div class="view">
                         <img class="d-block w-100" src="media/slider2.jpg" alt="Second slide">
-                        <div class="mask rgba-black-slight"></div>
+                        <div class="mask rgba-black-light"></div>
                     </div>
                     <div class="carousel-caption">
                         <h3 class="h3-responsive">Advertise your business on our website</h3>
@@ -102,20 +120,8 @@
         </div>
     </div>
     <!-- Slider End -->
-    <br>
 
 
-
-    <!-- Ads/post start -->
-    <div class="container" id="adContainer">
-        <h1>Ads</h1>
-        <!-- Card deck -->
-
-        <!-- Card deck -->
-    </div>
-    <!-- Ads/post End -->
-
-    
 
     <!-- Footer start -->
     <footer class="page-footer font-small blue pt-4 mt-4" id="footer">
@@ -176,7 +182,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 
