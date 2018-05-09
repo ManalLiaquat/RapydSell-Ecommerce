@@ -32,7 +32,7 @@ function register() {
         msg1.style.textShadow = "0px 0px 2px red";
         msg1.style.color = "red";
     }
-    
+
     firebase
         .auth()
         .createUserWithEmailAndPassword(email.value, password.value)
@@ -95,7 +95,7 @@ function login() {
             console.log(result.uid);
             setTimeout(() => {
                 window.location = "rapydsell.html";
-            }, 2000);
+            }, 1000);
         })
         .catch(function (error) {
             console.log(error);
@@ -112,10 +112,13 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         var uid = user.uid;
         console.log(uid);
-        var token = firebase.auth().currentUser.uid;
-        queryDatabase(token);
+        // var token = firebase.auth().currentUser.uid;
+        // queryDatabase(token);
     } else {
         // window.location = "index.html";
+        document.getElementById("signinBtn").style.display = "inline";
+        document.getElementById("profileBtn").style.display = "none";
+        document.getElementById("postBtn").style.display = "none";
         console.log("Please login to see posts and post your ad too.");
         msg2.innerHTML = "User is signed out.";
     }
@@ -142,84 +145,88 @@ var adsDetail = document.getElementById("adDetail");
 var adsPrice = document.getElementById("adPrice");
 var usersNumber = document.getElementById("userNumber");
 
-window.onload =
-    function postMyAd() {
-        // File
-        var fileBtn = document.getElementById("adImage");
-        var progressBar = document.getElementById("progressBar");
+window.onload = function postMyAd() {
+    // File
+    var fileBtn = document.getElementById("adImage");
+    var progressBar = document.getElementById("progressBar");
 
 
-        fileBtn.addEventListener("change", function (e) {
-            //   get a file
-            var file = e.target.files[0];
-            //   create a storage ref
-            var storageRef = firebase.storage().ref("RapydSellApp/" + file.name);
-            //   upload a file
-            var uploadTask = storageRef.put(file);
+    fileBtn.addEventListener("change", function (e) {
+        //   get a file
+        var file = e.target.files[0];
+        //   create a storage ref
+        var storageRef = firebase.storage().ref("RapydSellApp/" + file.name);
+        //   upload a file
+        var uploadTask = storageRef.put(file);
 
-            // var uploadTask = firebase.storage().ref('RapydSellApp/' + file.name).put(file);
+        // var uploadTask = firebase.storage().ref('RapydSellApp/' + file.name).put(file);
 
-            // Listen for state changes, errors, and completion of the upload.
-            uploadTask.on("state_changed", // or 'state_changed'
-                function (snapshot) {
-                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                    var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    progressBar.value = percentage;
-                    console.log('Upload is ' + percentage + '% done');
-                    switch (snapshot.state) {
-                        case firebase.storage.TaskState.PAUSED: // or 'paused'
-                            console.log('Upload is paused');
-                            break;
-                        case firebase.storage.TaskState.RUNNING: // or 'running'
-                            console.log('Upload is running');
-                            break;
-                    }
-                }, function (error) {
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on("state_changed", // or 'state_changed'
+            function (snapshot) {
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                progressBar.value = percentage;
+                console.log('Upload is ' + percentage + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            }, function (error) {
 
-                    // A full list of error codes is available at
-                    // https://firebase.google.com/docs/storage/web/handle-errors
-                    switch (error.code) {
-                        case 'storage/unauthorized':
-                            console.log(error);
-                            // User doesn't have permission to access the object
-                            break;
+                // A full list of error codes is available at
+                // https://firebase.google.com/docs/storage/web/handle-errors
+                switch (error.code) {
+                    case 'storage/unauthorized':
+                        console.log(error);
+                        // User doesn't have permission to access the object
+                        break;
 
-                        case 'storage/canceled':
-                            console.log(error);
-                            // User canceled the upload
-                            break;
+                    case 'storage/canceled':
+                        console.log(error);
+                        // User canceled the upload
+                        break;
 
-                        case 'storage/unknown':
-                            console.log(error);
-                            // Unknown error occurred, inspect error.serverResponse
-                            break;
-                    }
-                }, function () {
-                    // Upload completed successfully, now we can get the download URL
-                    var postKey = firebase.database().ref("RapydSell App/" + "Posts Data/").push().key;
-                    var downloadURL = uploadTask.snapshot.downloadURL;
-                    var updates = {};
-                    var postData = {
-                        adTitle: adsTitle.value,
-                        adDetail: adsDetail.value,
-                        adPrice: adsPrice.value,
-                        phoneNumber: usersNumber.value,
-                        imgUrl: downloadURL,
-                        user: firebase.auth().currentUser.uid
-                    };
-                    updates["/RapydSell App/" + "Posts Data/" + postKey] = postData;
-                    firebase.database().ref().update(updates);
-                    console.log(downloadURL);
-                });
-        });
-    }
+                    case 'storage/unknown':
+                        console.log(error);
+                        // Unknown error occurred, inspect error.serverResponse
+                        break;
+                }
+            }, function () {
+                // Upload completed successfully, now we can get the download URL
+                var postKey = firebase.database().ref("RapydSell App/" + "Posts Data/").push().key;
+                var downloadURL = uploadTask.snapshot.downloadURL;
+                var updates = {};
+                var postData = {
+                    adTitle: adsTitle.value,
+                    adDetail: adsDetail.value,
+                    adPrice: adsPrice.value,
+                    phoneNumber: usersNumber.value,
+                    imgUrl: downloadURL,
+                    user: firebase.auth().currentUser.uid
+                };
+                updates["/RapydSell App/" + "Posts Data/" + postKey] = postData;
+                firebase.database().ref().update(updates);
+                console.log(downloadURL);
+            });
+    });
+}
 
 
 
 /* Ad-Post  Start*/
 
 
-function queryDatabase(token) {
+window.onload = () => {
+    queryDatabase();
+}
+
+
+function queryDatabase() {
     firebase.database().ref("/RapydSell App/" + "Posts Data/").once("value").then(function (data) {
         var postObject = data.val();
         console.log(postObject);
