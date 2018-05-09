@@ -1,2 +1,2 @@
 # RapydSell Ecommerce (Website)
-Live Preview: 
+Live Preview: https://manalliaquat.github.io/RapydSell-Ecommerce/
