@@ -145,7 +145,7 @@ var adsDetail = document.getElementById("adDetail");
 var adsPrice = document.getElementById("adPrice");
 var usersNumber = document.getElementById("userNumber");
 
-window.onload = function postMyAd() {
+function postMyAd() {
     // File
     var fileBtn = document.getElementById("adImage");
     var progressBar = document.getElementById("progressBar");
@@ -219,11 +219,6 @@ window.onload = function postMyAd() {
 
 
 /* Ad-Post  Start*/
-
-
-window.onload = () => {
-    queryDatabase();
-}
 
 
 function queryDatabase() {
