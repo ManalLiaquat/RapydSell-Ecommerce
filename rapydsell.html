@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
-
+    <link rel="manifest" href="manifest.json">
+    
     <title>Rapyd$ell</title>
 </head>
 
@@ -23,7 +24,7 @@
             aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="navbar-collapse collapse show" id="navbarSupportedContent-4">
+        <div class="navbar-collapse collapse" id="navbarSupportedContent-4">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown" id="profileBtn">
                     <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
@@ -51,7 +52,7 @@
         <div class="row">
             <div class="col-md-10">
                 <div class="md-form" style="margin-top:10px">
-                    <input type="search" class="form-control" size="50" name="item search" placeholder="Search any item...">
+                    <input type="search" class="form-control" size="50" id="c" name="item search" placeholder="Search any item...">
                 </div>
             </div>
             <div class="col-md-2">
@@ -175,7 +176,6 @@
 
     </footer>
     <!-- Footer End-->
-
 
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
