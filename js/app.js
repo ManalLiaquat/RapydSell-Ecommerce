@@ -10,7 +10,6 @@ var config = {
 firebase.initializeApp(config);
 
 
-
 /* Registration Process */
 
 var msg1 = document.getElementById("msg1");
@@ -112,15 +111,11 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         var uid = user.uid;
         console.log(uid);
-        // var token = firebase.auth().currentUser.uid;
-        // queryDatabase(token);
     } else {
-        // window.location = "index.html";
         document.getElementById("signinBtn").style.display = "inline";
         document.getElementById("profileBtn").style.display = "none";
         document.getElementById("postBtn").style.display = "none";
         console.log("Please login to see posts and post your ad too.");
-        msg2.innerHTML = "User is signed out.";
     }
 
 });
@@ -142,6 +137,7 @@ function logOut() {
 
 var adsTitle = document.getElementById("adTitle");
 var adsDetail = document.getElementById("adDetail");
+var AdOwnerName = document.getElementById("AdOwnerName");
 var adsPrice = document.getElementById("adPrice");
 var usersNumber = document.getElementById("userNumber");
 
@@ -158,8 +154,6 @@ function postMyAd() {
         var storageRef = firebase.storage().ref("RapydSellApp/" + file.name);
         //   upload a file
         var uploadTask = storageRef.put(file);
-
-        // var uploadTask = firebase.storage().ref('RapydSellApp/' + file.name).put(file);
 
         // Listen for state changes, errors, and completion of the upload.
         uploadTask.on("state_changed", // or 'state_changed'
@@ -182,18 +176,15 @@ function postMyAd() {
                 // https://firebase.google.com/docs/storage/web/handle-errors
                 switch (error.code) {
                     case 'storage/unauthorized':
-                        console.log(error);
-                        // User doesn't have permission to access the object
+                        console.log(error,"User doesn't have permission to access the object");
                         break;
 
                     case 'storage/canceled':
-                        console.log(error);
-                        // User canceled the upload
+                        console.log(error,"User canceled the upload");
                         break;
 
                     case 'storage/unknown':
-                        console.log(error);
-                        // Unknown error occurred, inspect error.serverResponse
+                        console.log(error,"Unknown error occurred, inspect error.serverResponse");
                         break;
                 }
             }, function () {
@@ -204,6 +195,7 @@ function postMyAd() {
                 var postData = {
                     adTitle: adsTitle.value,
                     adDetail: adsDetail.value,
+                    ownerName: AdOwnerName.value,
                     adPrice: adsPrice.value,
                     phoneNumber: usersNumber.value,
                     imgUrl: downloadURL,
@@ -211,7 +203,7 @@ function postMyAd() {
                 };
                 updates["/RapydSell App/" + "Posts Data/" + postKey] = postData;
                 firebase.database().ref().update(updates);
-                console.log(downloadURL);
+                // console.log(downloadURL);
             });
     });
 }
@@ -224,7 +216,7 @@ function postMyAd() {
 function queryDatabase() {
     firebase.database().ref("/RapydSell App/" + "Posts Data/").once("value").then(function (data) {
         var postObject = data.val();
-        console.log(postObject);
+        // console.log(postObject);
         var keys = Object.keys(postObject);
 
         var adContainer = document.getElementById("adContainer");
@@ -237,6 +229,7 @@ function queryDatabase() {
                 cardDeck.className = "card-deck";
                 adContainer.appendChild(cardDeck);
             }
+
             var cardMb3Hoverable = document.createElement("DIV");
             cardMb3Hoverable.setAttribute("class", "card mb-4 hoverable");
             cardDeck.appendChild(cardMb3Hoverable);
@@ -245,8 +238,8 @@ function queryDatabase() {
             viewOverlayZoom.setAttribute("class", "view overlay zoom");
             cardMb3Hoverable.appendChild(viewOverlayZoom);
 
-            var cardImgTop = document.createElement("IMG");
-            cardImgTop.setAttribute("class", "card-img-top");
+            var cardImgTop = document.createElement("IMG");  
+            cardImgTop.className = "img-fluid card-img-top waves-effect waves-light";          
             cardImgTop.setAttribute("id", "adImg");
             cardImgTop.setAttribute("src", currentObj.imgUrl);
             viewOverlayZoom.appendChild(cardImgTop);
@@ -286,12 +279,13 @@ function queryDatabase() {
 
             var adPosterName = document.createElement("SPAN");
             adPosterName.className = "text-secondary";
-
-            var us3rKey = currentObj.user;
-            firebase.database().ref("RapydSell App").child("Registration Data/" + us3rKey).on("value", (data) => {
-                adPosterName.innerHTML = data.val().username;
-            });
+            adPosterName.innerHTML = currentObj.ownerName;
             adPostBy.appendChild(adPosterName);
+
+            // var us3rKey = currentObj.user;
+            // firebase.database().ref("RapydSell App").child("Registration Data/" + us3rKey).on("value", (data) => {
+            //     adPosterName.innerHTML = data.val().username;
+            // });
 
             var adPosterNum = document.createElement("P");
             adPosterNum.innerHTML = "Contact Number: ";
