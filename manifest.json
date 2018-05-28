@@ -31,6 +31,6 @@
     "start_url": "rapydsell.html",
     "gcm_sender_id": "103953800507",
     "display": "standalone",
-    "background_color": "darkgoldenrod",
-    "theme_color": "#9e7409"
+    "background_color": "#11a6d8",
+    "theme_color": "#2692b6"
 }
