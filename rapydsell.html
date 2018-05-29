@@ -11,11 +11,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
-    
+
     <title>Rapyd$ell</title>
 </head>
 
-<body id="body" onload="queryDatabase();"class="cyan-skin smooth-scroll">
+<body id="body" onload="queryDatabase();" class="cyan-skin smooth-scroll">
 
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark primary-color">
         <a class="navbar-brand" href="rapydsell.html">
@@ -35,7 +35,12 @@
                     </div>
                 </li>
                 <li>
-                    <a href="index.html" class="btn btn-danger btn-sm pull-right" style="display: none;" id="signinBtn"><i class="fa fa-sign-in"></i> Sign In</a>
+                    <a href="index.html" class="btn btn-danger btn-sm pull-right" style="display: none;" id="signinBtn">
+                        <i class="fa fa-sign-in"></i> Sign In</a>
+                </li>
+                <li>
+                    <a href="#" class="btn btn-danger btn-sm pull-right" onclick="sendVerificationLink();" style="display: none;" id="verifyBtn">
+                        <i class="fa fa-inbox"></i> Verify Your Email</a>
                 </li>
                 <li class="nav-item active">
                     <a name="" id="postBtn" class="btn btn-warning btn-sm pull-right" onclick="window.location='adpost.html'" href="#" role="button">Submit an Ad &nbsp;
@@ -76,6 +81,72 @@
 
         <!-- Card deck -->
     </div>
+    <!-- Dummy Content -->
+    <div class="container">
+        <div class="card-deck">
+            <div class="card mb-4 hoverable">
+                <div class="view overlay zoom">
+                    <img class="img-fluid card-img-top waves-effect waves-light" id="adImg" src="media/1.png">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">This is ad no.1</h4>
+                    <p class="card-text">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..." "There
+                        is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain</p>
+                    <h4 class="red-text">Rs.
+                        <h4 class="red-text" style="display: inline;">11</h4>
+                    </h4>
+                    <hr>
+                    <p>AD Posted By:
+                        <span class="text-secondary">Manal Liaquat</span>
+                    </p>
+                    <p>Contact Number:
+                        <span class="text-secondary">03111111111</span>
+                    </p>
+                </div>
+            </div>
+            <div class="card mb-4 hoverable">
+                <div class="view overlay zoom">
+                    <img class="img-fluid card-img-top waves-effect waves-light" id="adImg" src="media/1.png">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">This is ad no.2</h4>
+                    <p class="card-text">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..." "There
+                        is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain</p>
+                    <h4 class="red-text">Rs.
+                        <h4 class="red-text" style="display: inline;">22</h4>
+                    </h4>
+                    <hr>
+                    <p>AD Posted By:
+                        <span class="text-secondary">Manal Liaquat</span>
+                    </p>
+                    <p>Contact Number:
+                        <span class="text-secondary">03222222222</span>
+                    </p>
+                </div>
+            </div>
+            <div class="card mb-4 hoverable">
+                <div class="view overlay zoom">
+                    <img class="img-fluid card-img-top waves-effect waves-light" id="adImg" src="media/1.png">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">This is ad no.3</h4>
+                    <p class="card-text">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..." "There
+                        is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain</p>
+                    <h4 class="red-text">Rs.
+                        <h4 class="red-text" style="display: inline;">33</h4>
+                    </h4>
+                    <hr>
+                    <p>AD Posted By:
+                        <span class="text-secondary">Manal Liaquat</span>
+                    </p>
+                    <p>Contact Number:
+                        <span class="text-secondary">03333333333</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Dummy Content -->
     <!-- Ads/post End -->
 
     <br>
