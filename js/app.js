@@ -40,8 +40,8 @@ function register() {
                 username: name.value,
                 email: result.email,
                 phoneNumber: number.value,
-                uid: result.uid,
-                emailVerified: result.emailVerified
+                uid: result.uid
+                // emailVerified: result.emailVerified
             };
 
 
@@ -104,14 +104,27 @@ function login() {
         });
 }
 
-
+function sendVerificationLink() {
+    var user = firebase.auth().currentUser;
+    user.sendEmailVerification().then(function() {
+        alert(`Email Verifcation Link has been sent to ${user.email}`);
+    }).catch(function(error) {
+        alert(`Error: ${error.message}`);
+    })
+}
 
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         var uid = user.uid;
         console.log(uid);
+        if (user.emailVerified === false) {
+            document.getElementById("postBtn").style.display = "none";            
+            document.getElementById("verifyBtn").style.display = "inline";
+        }
+        document.getElementById("homeRegBtn").style.display = "none";
     } else {
+        document.getElementById("verifyBtn").style.display = "none";
         document.getElementById("signinBtn").style.display = "inline";
         document.getElementById("profileBtn").style.display = "none";
         document.getElementById("postBtn").style.display = "none";
@@ -299,10 +312,6 @@ function queryDatabase() {
         }
     });
 }
-
-
-
-
 
 /* image uploader */
 // var adsImage = document.getElementById("adImage");
