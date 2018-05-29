@@ -9,6 +9,7 @@ const staticAssets = [
     './media/favicon.ico',
     './media/slider1.jpg',
     './media/slider2.jpg',
+    './media/1.png',
     './media/animation-intro.mp4'
 ]
 
