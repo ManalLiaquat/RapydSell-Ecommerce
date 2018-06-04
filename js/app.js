@@ -158,7 +158,7 @@ var usersNumber = document.getElementById("userNumber");
 var fileBtn = document.getElementById("adImage");
 var progressBar = document.getElementById("progressBar");
 
-fileBtn.addEventListener("change", function (e) {
+fileBtn.addEventListener("change", async function (e) {
     //   get a file
     file = e.target.files[0];
 });
@@ -354,13 +354,6 @@ function queryDatabase() {
             // /* Slider End */
         }
     });
-}
-
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('../sw.js')
-        .then(function () {
-            console.log('Service Worker Registered');
-        });
 }
 
 /* image uploader */
