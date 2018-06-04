@@ -93,7 +93,7 @@ function login() {
 
             console.log(result.uid);
             setTimeout(() => {
-                window.location = "rapydsell.html";
+                window.location = "home.html";
             }, 1000);
         })
         .catch(function (error) {
@@ -106,10 +106,10 @@ function login() {
 
 function sendVerificationLink() {
     var user = firebase.auth().currentUser;
-    user.sendEmailVerification().then(function() {
-        alert(`Email Verifcation Link has been sent to ${user.email}`);
-    }).catch(function(error) {
-        alert(`Error: ${error.message}`);
+    user.sendEmailVerification().then(function () {
+        swal('Done', `Email Verifcation Link has been sent to ${user.email}`, 'success');
+    }).catch(function (error) {
+        swal('Error!', `${error.message}`, "error");
     })
 }
 
@@ -118,11 +118,11 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         var uid = user.uid;
         console.log(uid);
+        console.log(user.email);
         if (user.emailVerified === false) {
-            document.getElementById("postBtn").style.display = "none";            
+            document.getElementById("postBtn").style.display = "none";
             document.getElementById("verifyBtn").style.display = "inline";
         }
-        document.getElementById("homeRegBtn").style.display = "none";
     } else {
         document.getElementById("verifyBtn").style.display = "none";
         document.getElementById("signinBtn").style.display = "inline";
@@ -154,71 +154,87 @@ var AdOwnerName = document.getElementById("AdOwnerName");
 var adsPrice = document.getElementById("adPrice");
 var usersNumber = document.getElementById("userNumber");
 
+// File
+var fileBtn = document.getElementById("adImage");
+var progressBar = document.getElementById("progressBar");
+
+fileBtn.addEventListener("change", function (e) {
+    //   get a file
+    file = e.target.files[0];
+});
+
 function postMyAd() {
-    // File
-    var fileBtn = document.getElementById("adImage");
-    var progressBar = document.getElementById("progressBar");
 
+    //   create a storage ref
+    var storageRef = firebase.storage().ref("RapydSellApp/" + file.name);
+    //   upload a file
+    var uploadTask = storageRef.put(file);
 
-    fileBtn.addEventListener("change", function (e) {
-        //   get a file
-        var file = e.target.files[0];
-        //   create a storage ref
-        var storageRef = firebase.storage().ref("RapydSellApp/" + file.name);
-        //   upload a file
-        var uploadTask = storageRef.put(file);
+    // Listen for state changes, errors, and completion of the upload.
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+        function (snapshot) {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            progressBar.value = percentage;
+            console.log('Upload is ' + percentage + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
 
-        // Listen for state changes, errors, and completion of the upload.
-        uploadTask.on("state_changed", // or 'state_changed'
-            function (snapshot) {
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                progressBar.value = percentage;
-                console.log('Upload is ' + percentage + '% done');
-                switch (snapshot.state) {
-                    case firebase.storage.TaskState.PAUSED: // or 'paused'
-                        console.log('Upload is paused');
-                        break;
-                    case firebase.storage.TaskState.RUNNING: // or 'running'
-                        console.log('Upload is running');
-                        break;
-                }
-            }, function (error) {
+            // A full list of error codes is available at
+            // https://firebase.google.com/docs/storage/web/handle-errors
+            switch (error.code) {
+                case 'storage/unauthorized':
+                    console.log(error, "User doesn't have permission to access the object");
+                    break;
 
-                // A full list of error codes is available at
-                // https://firebase.google.com/docs/storage/web/handle-errors
-                switch (error.code) {
-                    case 'storage/unauthorized':
-                        console.log(error,"User doesn't have permission to access the object");
-                        break;
+                case 'storage/canceled':
+                    console.log(error, "User canceled the upload");
+                    break;
 
-                    case 'storage/canceled':
-                        console.log(error,"User canceled the upload");
-                        break;
-
-                    case 'storage/unknown':
-                        console.log(error,"Unknown error occurred, inspect error.serverResponse");
-                        break;
-                }
-            }, function () {
-                // Upload completed successfully, now we can get the download URL
-                var postKey = firebase.database().ref("RapydSell App/" + "Posts Data/").push().key;
-                var downloadURL = uploadTask.snapshot.downloadURL;
-                var updates = {};
-                var postData = {
-                    adTitle: adsTitle.value,
-                    adDetail: adsDetail.value,
-                    ownerName: AdOwnerName.value,
-                    adPrice: adsPrice.value,
-                    phoneNumber: usersNumber.value,
-                    imgUrl: downloadURL,
-                    user: firebase.auth().currentUser.uid
-                };
-                updates["/RapydSell App/" + "Posts Data/" + postKey] = postData;
-                firebase.database().ref().update(updates);
-                // console.log(downloadURL);
-            });
-    });
+                case 'storage/unknown':
+                    console.log(error, "Unknown error occurred, inspect error.serverResponse");
+                    break;
+            }
+        }, function () {
+            // Upload completed successfully, now we can get the download URL
+            var postKey = firebase.database().ref("RapydSell App/" + "Posts Data/").push().key;
+            var downloadURL = uploadTask.snapshot.downloadURL;
+            var updates = {};
+            var postData = {
+                adTitle: adsTitle.value,
+                adDetail: adsDetail.value,
+                ownerName: AdOwnerName.value,
+                adPrice: adsPrice.value,
+                phoneNumber: usersNumber.value,
+                imgUrl: downloadURL,
+                user: firebase.auth().currentUser.uid
+            };
+            updates["/RapydSell App/" + "Posts Data/" + postKey] = postData;
+            firebase.database().ref().update(updates);
+            swal({
+                title: "Your ad is live now",
+                text: "Click OK to see your advertise",
+                icon: "success",
+            })
+                .then((willOK) => {
+                    if (willOK) {
+                        // window.location = 'home.html';
+                        // adsTitle.value = "";
+                        // adsDetail.value = "";
+                        // adsPrice.value = "";
+                        // AdOwnerName.value = "";
+                        // usersNumber.value = "";
+                    }
+                });
+            // console.log(downloadURL);
+        });
 }
 
 
@@ -227,7 +243,11 @@ function postMyAd() {
 
 
 function queryDatabase() {
+
+    // var imagesArray = []; /* for slider images */
+
     firebase.database().ref("/RapydSell App/" + "Posts Data/").once("value").then(function (data) {
+
         var postObject = data.val();
         // console.log(postObject);
         var keys = Object.keys(postObject);
@@ -235,7 +255,7 @@ function queryDatabase() {
         var adContainer = document.getElementById("adContainer");
 
         var cardDeck;
-        for (var i = 0; i < keys.length; i++) {
+        for (var i = 0; i < keys.length; i++) {        /* also check this condition manal => for(var i = keys.length; i > 0 ; i--) */
             var currentObj = postObject[keys[i]];
             if (i % 3 == 0) {
                 cardDeck = document.createElement("DIV");
@@ -251,8 +271,8 @@ function queryDatabase() {
             viewOverlayZoom.setAttribute("class", "view overlay zoom");
             cardMb3Hoverable.appendChild(viewOverlayZoom);
 
-            var cardImgTop = document.createElement("IMG");  
-            cardImgTop.className = "img-fluid card-img-top waves-effect waves-light";          
+            var cardImgTop = document.createElement("IMG");
+            cardImgTop.className = "img-fluid card-img-top waves-effect waves-light";
             cardImgTop.setAttribute("id", "adImg");
             cardImgTop.setAttribute("src", currentObj.imgUrl);
             viewOverlayZoom.appendChild(cardImgTop);
@@ -309,8 +329,38 @@ function queryDatabase() {
             adPosterNum.appendChild(adPosterNumber);
             cardBody.appendChild(adPosterNum);
 
+            // /* Slider Images */
+            // imagesArray.push(currentObj.imgUrl); /* for slider images */
+
+            // var flag = 0;
+            // var timer;
+            // // console.log(imagesArray);
+            // document.getElementById('img').style.backgroundImage = "url(" + imagesArray[3] + ")";
+            //  function images() {
+            //      if (flag === imagesArray.length) {
+            //          flag = 0
+            //         console.log(flag);
+            //         document.getElementById('img').style.backgroundImage = "url(" + imagesArray[flag] + ")";
+            //     }
+            //     else {
+            //         document.getElementById('img').style.backgroundImage = "url(" + imagesArray[flag] + ")";
+            //         console.log(flag)
+            //     }
+            // }
+            // timer = setInterval(() => {
+            //     flag++
+            //     images()
+            // }, 500)
+            // /* Slider End */
         }
     });
+}
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('../sw.js')
+        .then(function () {
+            console.log('Service Worker Registered');
+        });
 }
 
 /* image uploader */
