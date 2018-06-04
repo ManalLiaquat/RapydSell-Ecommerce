@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="manifest" href="manifest.json">
 
     <title>Rapyd$ell</title>
@@ -18,7 +19,7 @@
 <body id="body" onload="queryDatabase();" class="cyan-skin smooth-scroll">
 
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark primary-color">
-        <a class="navbar-brand" href="rapydsell.html">
+        <a class="navbar-brand" href="home.html">
             <i class="fa fa-home"></i> Rapyd$ell</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4"
             aria-expanded="true" aria-label="Toggle navigation">
@@ -43,7 +44,7 @@
                         <i class="fa fa-inbox"></i> Verify Your Email</a>
                 </li>
                 <li class="nav-item active">
-                    <a name="" id="postBtn" class="btn btn-warning btn-sm pull-right" onclick="window.location='adpost.html'" href="#" role="button">Submit an Ad &nbsp;
+                    <a name="" id="postBtn" class="btn btn-warning btn-sm pull-right" onclick="window.location='upload.html'" href="#" role="button">Submit an Ad &nbsp;
                         <i class="fa fa-plus-circle"></i>
                     </a>
                 </li>
@@ -61,7 +62,7 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <a name="" id="" class="btn btn-secondary" onclick="alert('Search bar is in under construction\nSorry for the incovenience')"
+                <a name="" id="" class="btn btn-secondary" onclick="swal('Info!', 'Search bar is in under construction\nSorry for the incovenience!', 'info');"
                     href="#" role="button">
                     <i class="fa fa-search"></i>
                 </a>
@@ -93,7 +94,7 @@
                     <p class="card-text">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..." "There
                         is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain</p>
                     <h4 class="red-text">Rs.
-                        <h4 class="red-text" style="display: inline;">11</h4>
+                        <span class="red-text">11</span>
                     </h4>
                     <hr>
                     <p>AD Posted By:
@@ -113,7 +114,7 @@
                     <p class="card-text">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..." "There
                         is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain</p>
                     <h4 class="red-text">Rs.
-                        <h4 class="red-text" style="display: inline;">22</h4>
+                        <span class="red-text">22</span>
                     </h4>
                     <hr>
                     <p>AD Posted By:
@@ -133,7 +134,7 @@
                     <p class="card-text">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..." "There
                         is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain</p>
                     <h4 class="red-text">Rs.
-                        <h4 class="red-text" style="display: inline;">33</h4>
+                        <span class="red-text">33</span>
                     </h4>
                     <hr>
                     <p>AD Posted By:
@@ -191,6 +192,12 @@
             </a>
         </div>
     </div>
+    
+    
+    <!-- <div class="scroll">
+        <div id="img" class="scroll-card">
+        </div>
+    </div> -->
     <!-- Slider End -->
 
 
