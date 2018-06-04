@@ -225,12 +225,12 @@ function postMyAd() {
             })
                 .then((willOK) => {
                     if (willOK) {
-                        // window.location = 'home.html';
-                        // adsTitle.value = "";
-                        // adsDetail.value = "";
-                        // adsPrice.value = "";
-                        // AdOwnerName.value = "";
-                        // usersNumber.value = "";
+                        window.location = 'home.html';
+                        adsTitle.value = "";
+                        adsDetail.value = "";
+                        adsPrice.value = "";
+                        AdOwnerName.value = "";
+                        usersNumber.value = "";
                     }
                 });
             // console.log(downloadURL);
